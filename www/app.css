@@ -226,20 +226,16 @@ html, body {
 }
 
 .btn-primary,
-#select_all_markers,
 #download_markers,
-#download_groups,
-#add_to_group {
+#download_groups {
   background: var(--pink) !important;
   border-color: var(--pink) !important;
   color: #fff !important;
 }
 
 .btn-primary:hover,
-#select_all_markers:hover,
 #download_markers:hover,
-#download_groups:hover,
-#add_to_group:hover {
+#download_groups:hover {
   background: #e03570 !important;
   border-color: #e03570 !important;
   color: #fff !important;
