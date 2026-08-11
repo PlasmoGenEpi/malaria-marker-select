@@ -1,0 +1,4 @@
+2025-12_v1.0
+Source: WHO Compendium of molecular markers for antimalarial drug resistance
+Released: December 2025
+File retained in original Excel format.

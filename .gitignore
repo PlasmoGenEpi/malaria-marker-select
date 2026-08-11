@@ -1,0 +1,13 @@
+r-lib/
+.Rhistory
+.RData
+.DS_Store
+tmp.R
+tmp_compare/
+renv/library/
+renv/local/
+renv/cellar/
+renv/lock/
+renv/python/
+renv/staging/
+renv/cache/

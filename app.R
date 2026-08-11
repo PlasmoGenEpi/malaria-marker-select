@@ -3,180 +3,340 @@ library(DT)
 library(readr)
 library(dplyr)
 
+`%||%` <- function(x, y) {
+  if (is.null(x)) y else x
+}
+
 # Helper to load the default marker table bundled with the app
 load_default_markers <- function() {
   path <- file.path("data", "principal_resistance_marker_info_table.tsv")
   read_tsv(path, show_col_types = FALSE, progress = FALSE)
 }
 
+load_who_summary <- function() {
+  path <- file.path("data", "who_compendium_marker_summary.tsv")
+  read_tsv(path, show_col_types = FALSE, progress = FALSE) %>%
+    mutate(
+      gene = as.character(.data$gene),
+      aa_position = as.numeric(.data$aa_position),
+      in_who_compendium = TRUE
+    )
+}
+
+load_who_long <- function() {
+  path <- file.path("data", "who_compendium_annotations_long.tsv")
+  read_tsv(path, show_col_types = FALSE, progress = FALSE) %>%
+    mutate(
+      gene = as.character(.data$gene),
+      aa_position = as.numeric(.data$aa_position),
+      drug = as.character(.data$drug),
+      class_bucket = as.character(.data$class_bucket)
+    )
+}
+
+who_summary <- load_who_summary()
+who_long <- load_who_long()
+who_drugs <- sort(unique(who_long$drug))
+who_class_buckets <- c("Validated", "Candidate", "Potential")
+
+# Read a BED / BED-like TSV into chrom, start, end (0-based half-open assumed).
+read_bed_intervals <- function(path) {
+  raw_lines <- readLines(path, warn = FALSE, encoding = "UTF-8")
+  raw_lines <- raw_lines[!grepl("^(track|browser)\\b", raw_lines, ignore.case = TRUE)]
+  raw_lines <- raw_lines[nzchar(trimws(raw_lines))]
+  if (length(raw_lines) == 0) {
+    stop("The BED file is empty.")
+  }
+
+  first <- raw_lines[[1]]
+  has_header <- grepl("^#?chrom(\\t|,|$)", first, ignore.case = TRUE) ||
+    grepl("^#chrom", first, ignore.case = TRUE)
+  body <- if (has_header) raw_lines[-1] else raw_lines
+  if (length(body) == 0) {
+    stop("The BED file has a header but no intervals.")
+  }
+
+  tmp <- tempfile(fileext = ".bed")
+  on.exit(unlink(tmp), add = TRUE)
+  writeLines(body, tmp)
+
+  bed <- read_tsv(
+    tmp,
+    col_names = FALSE,
+    col_types = cols(.default = col_character()),
+    progress = FALSE,
+    show_col_types = FALSE
+  )
+  if (ncol(bed) < 3) {
+    stop("BED files need at least three columns: chrom, start, end.")
+  }
+
+  tibble(
+    chrom = as.character(bed[[1]]),
+    start = suppressWarnings(as.integer(bed[[2]])),
+    end = suppressWarnings(as.integer(bed[[3]]))
+  ) %>%
+    filter(
+      !is.na(.data$chrom), .data$chrom != "",
+      !is.na(.data$start), !is.na(.data$end),
+      .data$end > .data$start
+    )
+}
+
+# Markers whose [start, stop) overlaps any panel interval on the same chrom.
+markers_overlapping_bed <- function(markers_df, bed_df) {
+  if (is.null(bed_df) || nrow(bed_df) == 0) {
+    return(markers_df)
+  }
+  m <- markers_df %>%
+    mutate(
+      chrom = as.character(.data$chrom),
+      start = as.integer(.data$start),
+      stop = as.integer(.data$stop)
+    )
+  keep <- vapply(seq_len(nrow(m)), function(i) {
+    chrom_i <- m$chrom[[i]]
+    start_i <- m$start[[i]]
+    stop_i <- m$stop[[i]]
+    same <- bed_df$chrom == chrom_i
+    if (!any(same)) {
+      return(FALSE)
+    }
+    b <- bed_df[same, , drop = FALSE]
+    any(start_i < b$end & stop_i > b$start)
+  }, logical(1))
+  markers_df[keep, , drop = FALSE]
+}
+
+annotate_with_who <- function(df) {
+  df %>%
+    mutate(
+      gene = as.character(.data$gene),
+      aa_position = as.numeric(.data$aa_position)
+    ) %>%
+    select(-any_of(c(
+      "in_who_compendium", "who_drugs", "who_class_buckets",
+      "who_classifications", "who_alterations"
+    ))) %>%
+    left_join(who_summary, by = c("gene", "aa_position")) %>%
+    mutate(
+      in_who_compendium = ifelse(is.na(.data$in_who_compendium), FALSE, TRUE),
+      who_drugs = ifelse(is.na(.data$who_drugs), "", .data$who_drugs),
+      who_class_buckets = ifelse(is.na(.data$who_class_buckets), "", .data$who_class_buckets),
+      who_classifications = ifelse(is.na(.data$who_classifications), "", .data$who_classifications),
+      who_alterations = ifelse(is.na(.data$who_alterations), "", .data$who_alterations)
+    )
+}
+
 ui <- fluidPage(
   tags$head(
-    tags$style(HTML("
-      .app-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .app-header img {
-        height: 60px;
-      }
-    "))
+    tags$link(rel = "stylesheet", type = "text/css", href = "app.css"),
+    tags$meta(name = "viewport", content = "width=device-width, initial-scale=1")
   ),
   div(
     class = "app-header",
     tags$img(src = "logo.png", alt = "PlasmoGenEpi logo"),
-    h1("Malaria Resistance Marker Selector")
+    div(
+      class = "app-header-text",
+      h1("Malaria Resistance Marker Selector"),
+      p(class = "app-tagline", "Filter, select, and download markers genomic locations")
+    )
   ),
   sidebarLayout(
     sidebarPanel(
-      h4("Data source"),
       helpText(
-        "This app starts with a built‑in table of principal resistance markers.",
-        "You can optionally upload your own table in TSV (tab‑separated) format."
+        "Markers include those from the WHO compendium, plus a curated selection of additional markers of interest."
       ),
-      fileInput(
-        "marker_file",
-        "Upload custom marker table (TSV)",
-        accept = c(".tsv", "text/tab-separated-values")
+      tags$details(
+        class = "sidebar-details sidebar-details-filters",
+        open = NA,
+        tags$summary("Filters"),
+        helpText("Narrow which markers appear in the table."),
+        h4("WHO"),
+        helpText(
+          "Limit markers using WHO compendium annotations.",
+          "Details are on the Instructions tab."
+        ),
+        checkboxInput(
+          "who_only",
+          "WHO compendium only",
+          value = FALSE
+        ),
+        selectInput(
+          "who_drug",
+          "Drug(s)",
+          choices = who_drugs,
+          selected = character(0),
+          multiple = TRUE
+        ),
+        selectInput(
+          "who_class",
+          "Classification",
+          choices = who_class_buckets,
+          selected = character(0),
+          multiple = TRUE
+        ),
+        actionButton("clear_who_filters", "Clear WHO filters"),
+        tags$hr(),
+        h4("Panel BED"),
+        helpText(
+          "Upload a BED (chrom, start, end) to keep markers that overlap your panel."
+        ),
+        fileInput(
+          "panel_bed_file",
+          "Upload panel BED",
+          accept = c(".bed", ".tsv", ".bed.tsv", "text/tab-separated-values", "text/plain")
+        ),
+        actionButton("clear_panel_bed", "Clear panel BED"),
+        uiOutput("panel_bed_status")
       ),
-      actionButton("reset_data", "Use built‑in marker table"),
-      tags$hr(),
-      h4("Table Display"),
-      helpText("By default you see gene_id, gene (gene name), and amino acid position."),
-      uiOutput("extra_cols_ui"),
+      uiOutput("who_filter_status"),
+      tags$details(
+        class = "sidebar-details sidebar-details-columns",
+        tags$summary("Columns"),
+        helpText("Choose extra columns to show in the table."),
+        uiOutput("extra_cols_ui")
+      ),
+      tags$details(
+        class = "sidebar-details sidebar-details-custom",
+        tags$summary("Custom data"),
+        helpText("Optional — replace the built-in marker table with your own TSV."),
+        fileInput(
+          "marker_file",
+          "Upload marker TSV",
+          accept = c(".tsv", "text/tab-separated-values")
+        ),
+        actionButton("reset_data", "Use built-in table")
+      ),
       width = 3
     ),
     mainPanel(
-      tabsetPanel(
+      width = 9,
+      div(
+        class = "main-panel-card",
+        tabsetPanel(
         tabPanel(
           "Markers",
-          h3("Browse and select markers"),
+          h3("Markers"),
           helpText(
-            "1. Use the search boxes to find markers of interest (for example by gene).",
-            tags$br(),
-            "2. Click on rows to select markers; use Ctrl / Cmd or Shift for multiple selections."
+            "Select rows to download or group. Use the sidebar to filter first if needed."
+          ),
+          div(
+            style = "margin-bottom: 10px; display: flex; gap: 8px; flex-wrap: wrap;",
+            actionButton("select_all_markers", "Select all"),
+            actionButton("clear_marker_selection", "Clear selection")
           ),
           DTOutput("marker_table"),
           tags$hr(),
-          h3("Download selected markers as BED‑like table"),
+          h3("Download"),
           helpText(
-            "The download always includes #chrom, start, end, gene_id, and strand.",
-            "You can optionally add any other columns from the marker table."
+            "Exports ", code("#chrom"), ", ", code("start"), ", ", code("end"), ", ",
+            code("gene_id"), ", ", code("strand"), ", plus any optional columns you pick."
           ),
           uiOutput("download_cols_ui"),
-          checkboxInput("show_markers_preview", "Show preview before downloading", value = FALSE),
+          checkboxInput("show_markers_preview", "Show preview", value = FALSE),
           conditionalPanel(
             condition = "input.show_markers_preview == true",
-            h4("Preview of downloaded marker table"),
-            helpText("This preview shows exactly what will be written to the downloaded file, based on your current selection and chosen columns."),
+            h4("Preview"),
             DTOutput("markers_download_preview")
           ),
           downloadButton("download_markers", "Download selected markers"),
           helpText(
-            strong("Next step:"), "Go to the ", strong("Marker groups"), " tab to organize your selected markers into groups."
+            "Next: open ", strong("Marker groups"), " to organize this selection."
           )
         ),
         tabPanel(
           "Marker groups",
-          h3("Organize selected markers into groups"),
+          h3("Marker groups"),
           helpText(
-            "Markers shown below are the ones you selected in the ", strong("Markers"), " tab.",
-            "If the table is empty, go back to the Markers tab, select markers, then return here."
+            "Groups are built from markers you selected on the Markers tab."
           ),
           uiOutput("grouping_placeholder_ui"),
           DTOutput("grouping_marker_table"),
           tags$hr(),
-          h3("Create groups"),
+          h3("Create a group"),
           helpText(
-            "Select one or more markers from the table above, enter a group name, then click Add.",
-            "You can create as many groups as you like. A marker can belong to multiple groups.",
-            "You do not need to assign every selected marker to a group."
+            "Select rows above, name the group, then add. Markers can be in more than one group."
           ),
           textInput("group_name", "Group name", value = "", placeholder = "e.g. pfdhfr_pfdhps"),
-          actionButton("add_to_group", "Add selected markers to group"),
-          actionButton("clear_groups", "Clear all groups"),
-          tags$br(), tags$br(),
-          h4("Preview of marker-groups file"),
-          helpText(
-            "This preview shows exactly what will be written to the downloaded marker-groups TSV.",
-            "You can optionally include extra columns from the marker table."
+          div(
+            style = "display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;",
+            actionButton("add_to_group", "Add to group"),
+            actionButton("clear_groups", "Clear all groups")
           ),
+          h4("Groups preview"),
           uiOutput("groups_download_cols_ui"),
           DTOutput("group_table"),
           downloadButton("download_groups", "Download marker groups")
         ),
         tabPanel(
           "Instructions",
-          h3("What this app does"),
+          h3("Overview"),
           p(
-            "This app helps you explore a curated list of Plasmodium falciparum drug‑resistance markers,",
-            "select markers of interest, download them as a BED‑style file, and optionally organize them into groups."
-          ),
-          p(
-            strong("Workflow:"), " Markers tab → select markers → download (optional) → Marker groups tab → create groups from your selection."
-          ),
-          h3("Input data format"),
-          p(
-            "The built‑in marker table includes at least the following columns:",
-            code("gene_id"), ", ", code("gene"), ", ", code("aa_position"), ", ",
-            code("chrom"), ", ", code("start"), ", ", code("stop"), ", ", code("strand"), "."
+            "Browse Plasmodium falciparum drug‑resistance markers, filter by the WHO",
+            "Compendium or your panel BED, select markers, download a BED‑like TSV,",
+            "and optionally assign them to named groups."
           ),
           p(
-            "If you upload your own table it should also be a tab‑separated (TSV) file with the same",
-            "minimum columns. Any extra columns will be available to display and to include in downloads."
+            strong("Workflow:"),
+            " sidebar filters → select rows on Markers → download (optional) → Marker groups."
           ),
-          h3("Viewing and filtering markers"),
-          tags$ul(
-            tags$li("Go to the ", strong("Markers"), " tab."),
-            tags$li("Type into the search boxes below each column header to filter by gene, position or other fields."),
-            tags$li("Click on column headers to sort.")
+          h3("Using the app"),
+          tags$ol(
+            tags$li("Use the sidebar to filter by WHO drug/classification and/or panel BED overlap."),
+            tags$li("On ", strong("Markers"), ", search or sort the table, then select rows (or Select all)."),
+            tags$li("Download selected markers as a BED‑like TSV (", code("#chrom"), ", ", code("start"), ", ", code("end"), ", ", code("gene_id"), ", ", code("strand"), ", plus optional columns)."),
+            tags$li("On ", strong("Marker groups"), ", assign selected markers to group names and download a groups TSV (", code("group_id"), ", ", code("gene_id"), ", ", code("aa_position"), ").")
           ),
-          h3("Selecting markers"),
-          tags$ul(
-            tags$li("Click on a row to select a marker."),
-            tags$li("Hold Ctrl (Windows/Linux) or Command (macOS) and click to add or remove individual markers from the selection."),
-            tags$li("Use Shift‑click to select a block of markers.")
-          ),
-          h3("Downloading markers as BED‑like file"),
+          h3("Filters"),
           tags$ul(
             tags$li(
-              "Under ", strong("Download selected markers as BED‑like table"), ", choose any extra columns you would like to include."
+              strong("WHO:"),
+              " keep markers in the compendium, and/or those linked to selected drugs or",
+              " classifications (Validated / Candidate / Potential). A site can appear under",
+              " multiple drugs or classes; filters keep it if ", em("any"), " matching WHO entry exists."
             ),
             tags$li(
-              "Click ", strong("Download selected markers"), ". The file will contain at least:",
-              code("#chrom"), ", ", code("start"), ", ", code("end"), ", ", code("gene_id"), ", ", code("strand"), "."
+              strong("Panel BED:"),
+              " upload ", code("chrom"), "/", code("start"), "/", code("end"),
+              " (header optional). Keeps markers overlapping any interval. Chromosome names must",
+              " match the marker table (e.g. ", code("Pf3D7_13_v3"), ")."
             )
           ),
-          h3("Creating marker groups"),
-          tags$ol(
-            tags$li("In the ", strong("Markers"), " tab, select the markers you are interested in (and optionally download them as a BED file)."),
-            tags$li("Go to the ", strong("Marker groups"), " tab."),
-            tags$li("You will see the markers you selected. Choose which of these you want to add to a group."),
-            tags$li("Enter a group name (for example ", code("pfdhfr_pfdhps"), ") and click ", strong("Add selected markers to group"), "."),
-            tags$li("Repeat to create as many groups as you like. Each marker can appear in multiple groups. You do not need to assign every selected marker to a group.")
+          h3("WHO field guide"),
+          p(
+            "From the WHO Compendium user guide (Dec 2025, v1.0). Classifications reflect",
+            " laboratory, clinical, and/or genetic epidemiological evidence."
+          ),
+          tags$ul(
+            tags$li(strong("Gene(s):"), " gene(s) carrying the alteration."),
+            tags$li(strong("Alteration(s):"), " mutation, haplotype, or amplification (", code("who_alterations"), ")."),
+            tags$li(strong("Classification:"), " Validated, Candidate, or Potential based on evidence types."),
+            tags$li(strong("Evidence A1–C1:"), " 1 = threshold met — lab (A1 transfection; A2 isolate/strain assays; A3 genetic-cross progeny); clinical (B1 delayed clearance; B2 recrudescence; B3 post-treatment selection); epi (C1 prevalence)."),
+            tags$li(strong("References (PMIDs):"), " in the Excel workbook only.")
           ),
           p(
-            "The groups table shows the mapping between groups and individual markers.",
-            "You can download this table for downstream analyses."
+            strong("Gene abbreviations:"),
+            " ", code("Pfcrt"), " chloroquine resistance transporter; ",
+            code("Pfcytb"), " cytochrome b; ",
+            code("Pfdhfr"), " dihydrofolate reductase; ",
+            code("Pfdhps"), " dihydropteroate synthase; ",
+            code("Pfgch1"), " GTP-cyclohydrolase I; ",
+            code("Pfk13"), " Kelch 13; ",
+            code("Pfmdr1"), " multidrug resistance gene 1; ",
+            code("Pfpm2/3"), " plasmepsin 2/3; ",
+            code("Pfcoronin"), " coronin.",
+            " The app table uses short names (", code("crt"), ", ", code("k13"), ", …)."
           ),
-          h3("Groups output format"),
+          h3("Custom data"),
           p(
-            "The marker‑group file you download is a TSV with these core columns: ",
-            code("group_id"), ", ", code("gene_id"), ", ", code("aa_position"), ". ",
-            "Optionally, you can include additional columns from your marker table (for example ", code("chrom"), " or ", code("strand"), "). ",
-            "This is compatible with the style of the example ", code("example_loci_groups.tsv"), " file."
-          ),
-          h3("Running and sharing the app"),
-          tags$ol(
-            tags$li("Install R (version 4 or later) and RStudio if you prefer a graphical interface."),
-            tags$li("Install the R packages: ", code('install.packages(c("shiny", "DT", "readr", "dplyr"))'), "."),
-            tags$li("Open the project folder in R or RStudio and run: ", code('shiny::runApp()'), "."),
-            tags$li(
-              "To share online, you can deploy this folder to ", a("shinyapps.io", href = "https://www.shinyapps.io", target = "_blank"),
-              " using the ", code("rsconnect"), " package."
-            )
+            "Optional: upload a marker TSV with ",
+            code("gene_id"), ", ", code("gene"), ", ", code("aa_position"), ", ",
+            code("chrom"), ", ", code("start"), ", ", code("stop"), ", ", code("strand"),
+            ". WHO columns join automatically when gene + aa_position match."
           )
         )
+      )
       )
     )
   )
@@ -209,48 +369,159 @@ server <- function(input, output, session) {
     markers(load_default_markers())
   })
 
+  observeEvent(input$clear_who_filters, {
+    updateCheckboxInput(session, "who_only", value = FALSE)
+    updateSelectInput(session, "who_drug", selected = character(0))
+    updateSelectInput(session, "who_class", selected = character(0))
+  })
+
+  panel_bed <- reactiveVal(NULL)
+
+  observeEvent(input$panel_bed_file, {
+    req(input$panel_bed_file)
+    tryCatch({
+      bed <- read_bed_intervals(input$panel_bed_file$datapath)
+      if (nrow(bed) == 0) {
+        showModal(modalDialog(
+          title = "Problem with panel BED",
+          "No valid intervals were found. Check that the file has chrom, start, and end columns.",
+          easyClose = TRUE
+        ))
+        return()
+      }
+      panel_bed(bed)
+    }, error = function(e) {
+      showModal(modalDialog(
+        title = "Problem with panel BED",
+        conditionMessage(e),
+        easyClose = TRUE
+      ))
+    })
+  })
+
+  observeEvent(input$clear_panel_bed, {
+    panel_bed(NULL)
+  })
+
+  annotated_markers <- reactive({
+    annotate_with_who(markers())
+  })
+
+  filtered_markers <- reactive({
+    df <- annotated_markers()
+    drugs <- input$who_drug %||% character(0)
+    classes <- input$who_class %||% character(0)
+    who_only <- isTRUE(input$who_only)
+
+    if (who_only || length(drugs) > 0 || length(classes) > 0) {
+      key_df <- who_long
+      if (length(drugs) > 0) {
+        key_df <- key_df %>% filter(.data$drug %in% drugs)
+      }
+      if (length(classes) > 0) {
+        key_df <- key_df %>% filter(.data$class_bucket %in% classes)
+      }
+      keep_keys <- key_df %>%
+        distinct(.data$gene, .data$aa_position)
+      df <- df %>% inner_join(keep_keys, by = c("gene", "aa_position"))
+    }
+
+    bed <- panel_bed()
+    if (!is.null(bed)) {
+      df <- markers_overlapping_bed(df, bed)
+    }
+
+    df
+  })
+
+  output$who_filter_status <- renderUI({
+    n_all <- nrow(annotated_markers())
+    n_show <- nrow(filtered_markers())
+    div(
+      class = "marker-count-status",
+      strong(sprintf("Showing %d of %d markers", n_show, n_all))
+    )
+  })
+
+  output$panel_bed_status <- renderUI({
+    bed <- panel_bed()
+    if (is.null(bed)) {
+      return(helpText("No panel BED loaded."))
+    }
+    helpText(sprintf(
+      "Panel BED loaded: %d intervals on %d chromosomes.",
+      nrow(bed),
+      dplyr::n_distinct(bed$chrom)
+    ))
+  })
+
   # Default and extra columns for display
   base_display_cols <- c("gene_id", "gene", "aa_position")
+  who_display_cols <- c("in_who_compendium", "who_drugs", "who_class_buckets")
 
   output$extra_cols_ui <- renderUI({
-    df <- markers()
+    df <- annotated_markers()
     all_cols <- names(df)
     extra_choices <- setdiff(all_cols, base_display_cols)
+    default_selected <- intersect(who_display_cols, extra_choices)
     checkboxGroupInput(
       "extra_cols",
       "Select additional columns to display",
       choices = extra_choices,
-      selected = character(0)
+      selected = default_selected
     )
   })
 
   output$marker_table <- renderDT({
-    df <- markers()
+    df <- filtered_markers()
     display_cols <- unique(c(base_display_cols, input$extra_cols %||% character(0)))
     display_cols <- intersect(display_cols, names(df))
     datatable(
       df[, display_cols, drop = FALSE],
       selection = "multiple",
       filter = "top",
-      options = list(pageLength = 25, autoWidth = TRUE)
+      width = "100%",
+      options = list(
+        pageLength = 25,
+        autoWidth = FALSE,
+        scrollX = TRUE,
+        scrollCollapse = TRUE
+      )
     )
+  })
+
+  marker_table_proxy <- dataTableProxy("marker_table")
+
+  observeEvent(input$select_all_markers, {
+    # Prefer rows that remain after DataTables search/column filters;
+    # fall back to every row in the currently WHO-filtered table.
+    rows <- input$marker_table_rows_all
+    if (is.null(rows) || length(rows) == 0) {
+      rows <- seq_len(nrow(filtered_markers()))
+    }
+    selectRows(marker_table_proxy, rows)
+  })
+
+  observeEvent(input$clear_marker_selection, {
+    selectRows(marker_table_proxy, NULL)
   })
 
   # Extra columns for BED-like download
   output$download_cols_ui <- renderUI({
-    df <- markers()
+    df <- annotated_markers()
     base_bed_cols <- c("chrom", "start", "stop", "strand", "gene_id")
     extra_choices <- setdiff(names(df), base_bed_cols)
     selectInput(
       "extra_download_cols",
       "Optional extra columns to include",
       choices = extra_choices,
-      multiple = TRUE
+      multiple = TRUE,
+      selected = intersect(who_display_cols, extra_choices)
     )
   })
 
   markers_download_table <- reactive({
-    df <- markers()
+    df <- filtered_markers()
     sel <- input$marker_table_rows_selected
     if (is.null(sel) || length(sel) == 0) {
       return(tibble(
@@ -275,7 +546,13 @@ server <- function(input, output, session) {
   output$markers_download_preview <- renderDT({
     datatable(
       markers_download_table(),
-      options = list(pageLength = 10, autoWidth = TRUE)
+      width = "100%",
+      options = list(
+        pageLength = 10,
+        autoWidth = FALSE,
+        scrollX = TRUE,
+        scrollCollapse = TRUE
+      )
     )
   })
   output$download_markers <- downloadHandler(
@@ -289,7 +566,7 @@ server <- function(input, output, session) {
 
   # Markers selected in the Markers tab — used as the pool for grouping
   selected_markers_for_grouping <- reactive({
-    df <- markers()
+    df <- filtered_markers()
     sel <- input$marker_table_rows_selected
     if (is.null(sel) || length(sel) == 0) {
       return(df[0, c("gene_id", "gene", "aa_position"), drop = FALSE])
@@ -314,7 +591,13 @@ server <- function(input, output, session) {
     datatable(
       sm,
       selection = "multiple",
-      options = list(pageLength = 25, autoWidth = TRUE)
+      width = "100%",
+      options = list(
+        pageLength = 25,
+        autoWidth = FALSE,
+        scrollX = TRUE,
+        scrollCollapse = TRUE
+      )
     )
   })
 
@@ -326,7 +609,7 @@ server <- function(input, output, session) {
   ))
 
   output$groups_download_cols_ui <- renderUI({
-    df <- markers()
+    df <- annotated_markers()
     base_cols <- c("gene_id", "aa_position")
     extra_choices <- setdiff(names(df), base_cols)
     selectInput(
@@ -342,7 +625,7 @@ server <- function(input, output, session) {
     if (nrow(g) == 0) {
       return(g)
     }
-    df <- markers()
+    df <- annotated_markers()
     extra <- input$extra_groups_download_cols %||% character(0)
     extra <- intersect(extra, names(df))
     df_keyed <- df %>% mutate(gene_id = as.character(.data$gene_id))
@@ -384,7 +667,13 @@ server <- function(input, output, session) {
   output$group_table <- renderDT({
     datatable(
       groups_download_table(),
-      options = list(pageLength = 25, autoWidth = TRUE)
+      width = "100%",
+      options = list(
+        pageLength = 25,
+        autoWidth = FALSE,
+        scrollX = TRUE,
+        scrollCollapse = TRUE
+      )
     )
   })
 
@@ -399,4 +688,3 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-

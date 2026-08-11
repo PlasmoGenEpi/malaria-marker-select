@@ -1,0 +1,84 @@
+gene	aa_position	who_drugs	who_class_buckets	who_classifications	who_alterations	in_who_compendium
+coronin	50	Artemisinins	Potential	Potential marker (Lab.)	G50E	TRUE
+coronin	100	Artemisinins	Potential	Potential marker (Lab.)	R100K	TRUE
+coronin	107	Artemisinins	Potential	Potential marker (Lab.)	E107V	TRUE
+crt	72	Amodiaquine; Chloroquine	Candidate; Validated	Candidate marker ( Epi. & Lab.); Validated marker (Epi., Lab. & Clin.)	(C72 + V73) + M74I + N75E + K76T; C72S + (V73 + M74 + N75)+ K76T; C72S + K76T + A220S + N326D + I356L; C72S+K76T+A220S+N326D+I356L	TRUE
+crt	73	Chloroquine	Candidate; Validated	Candidate marker ( Epi. & Lab.); Validated marker (Epi., Lab. & Clin.)	(C72 + V73) + M74I + N75E + K76T; C72S + (V73 + M74 + N75)+ K76T	TRUE
+crt	74	Chloroquine	Candidate; Validated	Candidate marker ( Epi. & Lab.); Validated marker (Epi., Lab. & Clin.)	(C72 + V73) + M74I + N75E + K76T; C72S + (V73 + M74 + N75)+ K76T; M74I + N75E + K76T + A220S + Q271E + I356T + R371I; M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I; M74I + N75E + K76T + A220S + Q271E + R371I; M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	TRUE
+crt	75	Chloroquine	Candidate; Validated	Candidate marker ( Epi. & Lab.); Validated marker (Epi., Lab. & Clin.)	(C72 + V73) + M74I + N75E + K76T; C72S + (V73 + M74 + N75)+ K76T; M74I + N75E + K76T + A220S + Q271E + I356T + R371I; M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I; M74I + N75E + K76T + A220S + Q271E + R371I; M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	TRUE
+crt	76	Amodiaquine; Chloroquine	Candidate; Potential; Validated	Candidate marker ( Epi. & Lab.); Potential marker (Lab.); Validated marker (Epi., Lab. & Clin.)	(C72 + V73) + M74I + N75E + K76T; C72S + (V73 + M74 + N75)+ K76T; C72S + K76T + A220S + N326D + I356L; C72S+K76T+A220S+N326D+I356L; K76T; K76T+A144T+L160Y+N326D; M74I + N75E + K76T + A220S + Q271E + I356T + R371I; M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I; M74I + N75E + K76T + A220S + Q271E + R371I; M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	TRUE
+crt	93	Piperaquine	Validated	Validated marker (Epi., Lab. & Clin.)	T93S	TRUE
+crt	97	Piperaquine	Validated	Validated marker (Epi., Lab. & Clin.)	H97Y	TRUE
+crt	101	Piperaquine	Potential	Potential marker (Lab.)	C101F	TRUE
+crt	144	Chloroquine	Potential	Potential marker (Lab.)	K76T+A144T+L160Y+N326D	TRUE
+crt	145	Piperaquine	Validated	Validated marker (Epi., Lab. & Clin.)	F145I	TRUE
+crt	160	Chloroquine	Potential	Potential marker (Lab.)	K76T+A144T+L160Y+N326D	TRUE
+crt	218	Piperaquine	Validated	Validated marker (Epi., Lab. & Clin.)	I218F	TRUE
+crt	220	Amodiaquine; Chloroquine	Candidate	Candidate marker ( Epi. & Lab.)	C72S + K76T + A220S + N326D + I356L; C72S+K76T+A220S+N326D+I356L; M74I + N75E + K76T + A220S + Q271E + I356T + R371I; M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I; M74I + N75E + K76T + A220S + Q271E + R371I; M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	TRUE
+crt	271	Chloroquine	Candidate	Candidate marker ( Epi. & Lab.)	M74I + N75E + K76T + A220S + Q271E + I356T + R371I; M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I; M74I + N75E + K76T + A220S + Q271E + R371I; M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	TRUE
+crt	326	Amodiaquine; Chloroquine	Candidate; Potential	Candidate marker ( Epi. & Lab.); Potential marker (Lab.)	C72S + K76T + A220S + N326D + I356L; C72S+K76T+A220S+N326D+I356L; K76T+A144T+L160Y+N326D; M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I; M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	TRUE
+crt	343	Piperaquine	Candidate	Candidate marker (Epi. & Lab.)	M343L	TRUE
+crt	350	Piperaquine	Validated	Validated marker (Epi., Lab. & Clin.)	C350R	TRUE
+crt	352	Quinine	Potential	Potential marker (Lab.)	Q352K/R	TRUE
+crt	353	Piperaquine	Candidate	Candidate marker (Epi. & Lab.)	G353V	TRUE
+crt	356	Amodiaquine; Chloroquine	Candidate	Candidate marker ( Epi. & Lab.)	C72S + K76T + A220S + N326D + I356L; C72S+K76T+A220S+N326D+I356L; M74I + N75E + K76T + A220S + Q271E + I356T + R371I; M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I	TRUE
+crt	367	Piperaquine	Potential	Potential marker (Lab.)	G367C	TRUE
+crt	371	Chloroquine	Candidate	Candidate marker ( Epi. & Lab.)	M74I + N75E + K76T + A220S + Q271E + I356T + R371I; M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I; M74I + N75E + K76T + A220S + Q271E + R371I; M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	TRUE
+cytb	133	Atovaquone	Potential	Potential marker (Lab.)	M133I; M133I  + L271F; M133I + G280D; M133I + K272R; M133I + P275T	TRUE
+cytb	268	Atovaquone	Potential; Validated	Potential marker (Clin.); Validated marker (Lab. & Clin.)	Y268C; Y268S	TRUE
+cytb	271	Atovaquone	Potential	Potential marker (Lab.)	M133I  + L271F	TRUE
+cytb	272	Atovaquone	Potential	Potential marker (Lab.)	M133I + K272R	TRUE
+cytb	275	Atovaquone	Potential	Potential marker (Lab.)	M133I + P275T	TRUE
+cytb	280	Atovaquone	Potential	Potential marker (Lab.)	M133I + G280D	TRUE
+cytb	283	Atovaquone	Potential	Potential marker (Lab.)	L283I + V284K	TRUE
+cytb	284	Atovaquone	Potential	Potential marker (Lab.)	L283I + V284K	TRUE
+dhfr	16	Cycloguanil	Potential	Potential marker (Lab.)	A16V + S108T	TRUE
+dhfr	50	Cycloguanil	Potential	Potential marker (Lab.)	C50R + S108N	TRUE
+dhfr	51	Cycloguanil; Pyrimethamine; Sulfadoxine-Pyrimethamine	Candidate; Potential; Validated	Candidate marker (Epi. & Lab.); Potential marker (Lab.); Validated marker (Epi., Lab. & Clin.)	N51I; N51I + C59R; N51I + C59R + S108N; N51I + C59R + S108N &  A437G; N51I + C59R + S108N &  A437G + A581G; N51I + C59R + S108N & A437G + A581G + 613T; N51I + C59R + S108N & A437G + K540E; N51I + C59R + S108N & A437G + K540E + A581G; N51I + C59R + S108N & A437G + K540E + A581G + S436A; N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S; N51I + C59R + S108N & S436A  + A437G + A581G + A613S; N51I + C59R + S108N & S436A + A437G; N51I + C59R + S108N & S436A + A437G + A581G; N51I + C59R + S108N & S436A + A437G + A613S; N51I + C59R + S108N + I164L; N51I + S108N; N51I + S108N & A437G + K540E; N51I+C59R+S108N & S436A + A437G + K540E	TRUE
+dhfr	59	Cycloguanil; Pyrimethamine; Sulfadoxine-Pyrimethamine	Candidate; Potential; Validated	Candidate marker (Epi. & Lab.); Potential marker (Lab.); Validated marker (Epi., Lab. & Clin.)	C59R; C59R + S108N; C59R + S108N & A437G; C59R + S108N & K540E; C59R + S108N & S436A; C59R + S108N + I164L; N51I + C59R; N51I + C59R + S108N; N51I + C59R + S108N &  A437G; N51I + C59R + S108N &  A437G + A581G; N51I + C59R + S108N & A437G + A581G + 613T; N51I + C59R + S108N & A437G + K540E; N51I + C59R + S108N & A437G + K540E + A581G; N51I + C59R + S108N & A437G + K540E + A581G + S436A; N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S; N51I + C59R + S108N & S436A  + A437G + A581G + A613S; N51I + C59R + S108N & S436A + A437G; N51I + C59R + S108N & S436A + A437G + A581G; N51I + C59R + S108N & S436A + A437G + A613S; N51I + C59R + S108N + I164L; N51I+C59R+S108N & S436A + A437G + K540E	TRUE
+dhfr	108	Cycloguanil; Pyrimethamine; Sulfadoxine-Pyrimethamine	Candidate; Potential; Validated	Candidate marker (Epi. & Lab.); Potential marker (Lab.); Validated marker (Epi., Lab. & Clin.)	A16V + S108T; C50R + S108N; C59R + S108N; C59R + S108N & A437G; C59R + S108N & K540E; C59R + S108N & S436A; C59R + S108N + I164L; N51I + C59R + S108N; N51I + C59R + S108N &  A437G; N51I + C59R + S108N &  A437G + A581G; N51I + C59R + S108N & A437G + A581G + 613T; N51I + C59R + S108N & A437G + K540E; N51I + C59R + S108N & A437G + K540E + A581G; N51I + C59R + S108N & A437G + K540E + A581G + S436A; N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S; N51I + C59R + S108N & S436A  + A437G + A581G + A613S; N51I + C59R + S108N & S436A + A437G; N51I + C59R + S108N & S436A + A437G + A581G; N51I + C59R + S108N & S436A + A437G + A613S; N51I + C59R + S108N + I164L; N51I + S108N; N51I + S108N & A437G + K540E; N51I+C59R+S108N & S436A + A437G + K540E; S108N; S108N/T	TRUE
+dhfr	164	Cycloguanil; Pyrimethamine	Potential	Potential marker (Lab.)	C59R + S108N + I164L; I164L; N51I + C59R + S108N + I164L	TRUE
+dhps	431	Sulfadoxine-Pyrimethamine	Candidate	Candidate marker (Epi. & Lab.)	N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S	TRUE
+dhps	436	Sulfadoxine; Sulfadoxine-Pyrimethamine	Candidate; Potential; Validated	Candidate marker (Epi. & Lab.); Potential marker (Lab.); Validated marker (Epi., Lab. & Clin.)	C59R + S108N & S436A; N51I + C59R + S108N & A437G + K540E + A581G + S436A; N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S; N51I + C59R + S108N & S436A  + A437G + A581G + A613S; N51I + C59R + S108N & S436A + A437G; N51I + C59R + S108N & S436A + A437G + A581G; N51I + C59R + S108N & S436A + A437G + A613S; N51I+C59R+S108N & S436A + A437G + K540E; S436A + A437G; S436A + A437G + K540E; S436A + A437G + K540E + A613T; S436F + A437G + A613S; S436F + A613S	TRUE
+dhps	437	Sulfadoxine; Sulfadoxine-Pyrimethamine	Candidate; Potential; Validated	Candidate marker (Epi. & Lab.); Potential marker (Epi.); Potential marker (Lab.); Validated marker (Epi., Lab. & Clin.)	A437G; A437G + A581G; A437G + K540E; C59R + S108N & A437G; N51I + C59R + S108N &  A437G; N51I + C59R + S108N &  A437G + A581G; N51I + C59R + S108N & A437G + A581G + 613T; N51I + C59R + S108N & A437G + K540E; N51I + C59R + S108N & A437G + K540E + A581G; N51I + C59R + S108N & A437G + K540E + A581G + S436A; N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S; N51I + C59R + S108N & S436A  + A437G + A581G + A613S; N51I + C59R + S108N & S436A + A437G; N51I + C59R + S108N & S436A + A437G + A581G; N51I + C59R + S108N & S436A + A437G + A613S; N51I + S108N & A437G + K540E; N51I+C59R+S108N & S436A + A437G + K540E; S436A + A437G; S436A + A437G + K540E; S436A + A437G + K540E + A613T; S436F + A437G + A613S	TRUE
+dhps	540	Sulfadoxine; Sulfadoxine-Pyrimethamine	Candidate; Potential; Validated	Candidate marker (Epi. & Lab.); Potential marker (Epi.); Potential marker (Lab.); Validated marker (Epi., Lab. & Clin.)	A437G + K540E; C59R + S108N & K540E; N51I + C59R + S108N & A437G + K540E; N51I + C59R + S108N & A437G + K540E + A581G; N51I + C59R + S108N & A437G + K540E + A581G + S436A; N51I + S108N & A437G + K540E; N51I+C59R+S108N & S436A + A437G + K540E; S436A + A437G + K540E; S436A + A437G + K540E + A613T	TRUE
+dhps	581	Sulfadoxine; Sulfadoxine-Pyrimethamine	Candidate; Potential	Candidate marker (Epi. & Lab.); Potential marker (Lab.)	A437G + A581G; N51I + C59R + S108N &  A437G + A581G; N51I + C59R + S108N & A437G + A581G + 613T; N51I + C59R + S108N & A437G + K540E + A581G; N51I + C59R + S108N & A437G + K540E + A581G + S436A; N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S; N51I + C59R + S108N & S436A  + A437G + A581G + A613S; N51I + C59R + S108N & S436A + A437G + A581G	TRUE
+dhps	613	Sulfadoxine; Sulfadoxine-Pyrimethamine	Candidate; Potential	Candidate marker (Epi. & Lab.); Potential marker (Lab.)	N51I + C59R + S108N & A437G + A581G + 613T; N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S; N51I + C59R + S108N & S436A  + A437G + A581G + A613S; N51I + C59R + S108N & S436A + A437G + A613S; S436A + A437G + K540E + A613T; S436F + A437G + A613S; S436F + A613S	TRUE
+k13	252	Artemisinins	Candidate	Candidate marker (Epi. & Clin.)	E252Q	TRUE
+k13	413	Artemisinins	Potential	Potential marker (Lab.)	P413A	TRUE
+k13	438	Artemisinins	Potential	Potential marker (Epi.)	K438N	TRUE
+k13	441	Artemisinins	Candidate	Candidate marker (Epi. & Clin.)	P441L	TRUE
+k13	446	Artemisinins	Validated	Validated marker (Epi., Lab. & Clin.)	F446I	TRUE
+k13	449	Artemisinins	Potential	Potential marker (Epi.)	G449A	TRUE
+k13	458	Artemisinins	Validated	Validated marker (Epi., Lab. & Clin.)	N458Y	TRUE
+k13	469	Artemisinins	Candidate; Validated	Candidate marker (Epi. & Clin.); Validated marker (Epi., Lab. & Clin.)	C469F; C469Y	TRUE
+k13	476	Artemisinins	Validated	Validated marker (Epi., Lab. & Clin.)	M476I	TRUE
+k13	493	Artemisinins	Validated	Validated marker (Epi., Lab. & Clin.)	Y493H	TRUE
+k13	495	Artemisinins	Potential	Potential marker (Lab.)	F495L	TRUE
+k13	508	Artemisinins	Potential	Potential marker (Epi.)	T508N	TRUE
+k13	511	Artemisinins	Potential	Potential marker (Epi.)	Y511H	TRUE
+k13	515	Artemisinins	Potential	Potential marker (Lab.)	R515K	TRUE
+k13	527	Artemisinins	Potential	Potential marker (Clin.)	P527H	TRUE
+k13	533	Artemisinins	Validated	Validated marker (Epi., Lab. & Clin.)	G533S	TRUE
+k13	537	Artemisinins	Candidate	Candidate marker (Epi. & Clin.)	N537I	TRUE
+k13	538	Artemisinins	Candidate	Candidate marker (Epi. & Clin.)	G538V	TRUE
+k13	539	Artemisinins	Validated	Validated marker (Epi., Lab. & Clin.)	R539T	TRUE
+k13	543	Artemisinins	Validated	Validated marker (Epi., Lab. & Clin.)	I543T	TRUE
+k13	553	Artemisinins	Validated	Validated marker (Epi., Lab. & Clin.)	P553L	TRUE
+k13	561	Artemisinins	Validated	Validated marker (Epi., Lab. & Clin.)	R561H	TRUE
+k13	568	Artemisinins	Candidate	Candidate marker (Epi. & Clin.)	V568G	TRUE
+k13	574	Artemisinins	Validated	Validated marker (Epi., Lab. & Clin.)	P574L	TRUE
+k13	577	Artemisinins	Potential	Potential marker (Epi.)	S577L	TRUE
+k13	579	Artemisinins	Potential	Potential marker (Lab.)	M579I	TRUE
+k13	580	Artemisinins	Validated	Validated marker (Epi., Lab. & Clin.)	C580Y	TRUE
+k13	582	Artemisinins	Potential	Potential marker (Epi.)	A582V	TRUE
+k13	584	Artemisinins	Potential	Potential marker (Lab.)	D584V	TRUE
+k13	585	Artemisinins	Potential	Potential marker (Epi.)	N585K	TRUE
+k13	613	Artemisinins	Potential	Potential marker (Epi.)	Q613E	TRUE
+k13	622	Artemisinins	Validated	Validated marker (Epi., Lab. & Clin.)	R622I	TRUE
+k13	625	Artemisinins	Potential	Potential marker (Clin.)	G625R	TRUE
+k13	675	Artemisinins	Validated	Validated marker (Epi., Lab. & Clin.)	A675V	TRUE
+mdr1	86	Amodiaquine; Chloroquine	Candidate; Validated	Candidate marker ( Epi. & Lab.); Validated marker (Epi., Lab. & Clin.)	N86Y	TRUE
+mdr1	1034	Quinine	Potential	Potential marker (Lab.)	S1034C + N1042D + D1246Y	TRUE
+mdr1	1042	Quinine	Potential	Potential marker (Lab.)	S1034C + N1042D + D1246Y	TRUE
+mdr1	1246	Quinine	Potential	Potential marker (Lab.)	S1034C + N1042D + D1246Y	TRUE

@@ -1,0 +1,260 @@
+gene	aa_position	drug	classification	class_bucket	alteration	gene_who
+coronin	50	Artemisinins	Potential marker (Lab.)	Potential	G50E	Pfcoronin
+coronin	100	Artemisinins	Potential marker (Lab.)	Potential	R100K	Pfcoronin
+coronin	107	Artemisinins	Potential marker (Lab.)	Potential	E107V	Pfcoronin
+crt	72	Amodiaquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S+K76T+A220S+N326D+I356L	Pfcrt
+crt	72	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S + (V73 + M74 + N75)+ K76T	Pfcrt
+crt	72	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S + K76T + A220S + N326D + I356L	Pfcrt
+crt	72	Chloroquine	Validated marker (Epi., Lab. & Clin.)	Validated	(C72 + V73) + M74I + N75E + K76T	Pfcrt
+crt	73	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S + (V73 + M74 + N75)+ K76T	Pfcrt
+crt	73	Chloroquine	Validated marker (Epi., Lab. & Clin.)	Validated	(C72 + V73) + M74I + N75E + K76T	Pfcrt
+crt	74	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S + (V73 + M74 + N75)+ K76T	Pfcrt
+crt	74	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + R371I	Pfcrt
+crt	74	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + I356T + R371I	Pfcrt
+crt	74	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	Pfcrt
+crt	74	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I	Pfcrt
+crt	74	Chloroquine	Validated marker (Epi., Lab. & Clin.)	Validated	(C72 + V73) + M74I + N75E + K76T	Pfcrt
+crt	75	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S + (V73 + M74 + N75)+ K76T	Pfcrt
+crt	75	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + R371I	Pfcrt
+crt	75	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + I356T + R371I	Pfcrt
+crt	75	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	Pfcrt
+crt	75	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I	Pfcrt
+crt	75	Chloroquine	Validated marker (Epi., Lab. & Clin.)	Validated	(C72 + V73) + M74I + N75E + K76T	Pfcrt
+crt	76	Amodiaquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S+K76T+A220S+N326D+I356L	Pfcrt
+crt	76	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S + (V73 + M74 + N75)+ K76T	Pfcrt
+crt	76	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S + K76T + A220S + N326D + I356L	Pfcrt
+crt	76	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + R371I	Pfcrt
+crt	76	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + I356T + R371I	Pfcrt
+crt	76	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	Pfcrt
+crt	76	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I	Pfcrt
+crt	76	Chloroquine	Potential marker (Lab.)	Potential	K76T+A144T+L160Y+N326D	Pfcrt
+crt	76	Chloroquine	Validated marker (Epi., Lab. & Clin.)	Validated	K76T	Pfcrt
+crt	76	Chloroquine	Validated marker (Epi., Lab. & Clin.)	Validated	(C72 + V73) + M74I + N75E + K76T	Pfcrt
+crt	93	Piperaquine	Validated marker (Epi., Lab. & Clin.)	Validated	T93S	Pfcrt
+crt	97	Piperaquine	Validated marker (Epi., Lab. & Clin.)	Validated	H97Y	Pfcrt
+crt	101	Piperaquine	Potential marker (Lab.)	Potential	C101F	Pfcrt
+crt	144	Chloroquine	Potential marker (Lab.)	Potential	K76T+A144T+L160Y+N326D	Pfcrt
+crt	145	Piperaquine	Validated marker (Epi., Lab. & Clin.)	Validated	F145I	Pfcrt
+crt	160	Chloroquine	Potential marker (Lab.)	Potential	K76T+A144T+L160Y+N326D	Pfcrt
+crt	218	Piperaquine	Validated marker (Epi., Lab. & Clin.)	Validated	I218F	Pfcrt
+crt	220	Amodiaquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S+K76T+A220S+N326D+I356L	Pfcrt
+crt	220	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S + K76T + A220S + N326D + I356L	Pfcrt
+crt	220	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + R371I	Pfcrt
+crt	220	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + I356T + R371I	Pfcrt
+crt	220	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	Pfcrt
+crt	220	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I	Pfcrt
+crt	271	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + R371I	Pfcrt
+crt	271	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + I356T + R371I	Pfcrt
+crt	271	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	Pfcrt
+crt	271	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I	Pfcrt
+crt	326	Amodiaquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S+K76T+A220S+N326D+I356L	Pfcrt
+crt	326	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S + K76T + A220S + N326D + I356L	Pfcrt
+crt	326	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	Pfcrt
+crt	326	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I	Pfcrt
+crt	326	Chloroquine	Potential marker (Lab.)	Potential	K76T+A144T+L160Y+N326D	Pfcrt
+crt	343	Piperaquine	Candidate marker (Epi. & Lab.)	Candidate	M343L	Pfcrt
+crt	350	Piperaquine	Validated marker (Epi., Lab. & Clin.)	Validated	C350R	Pfcrt
+crt	352	Quinine	Potential marker (Lab.)	Potential	Q352K/R	Pfcrt
+crt	353	Piperaquine	Candidate marker (Epi. & Lab.)	Candidate	G353V	Pfcrt
+crt	356	Amodiaquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S+K76T+A220S+N326D+I356L	Pfcrt
+crt	356	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	C72S + K76T + A220S + N326D + I356L	Pfcrt
+crt	356	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + I356T + R371I	Pfcrt
+crt	356	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I	Pfcrt
+crt	367	Piperaquine	Potential marker (Lab.)	Potential	G367C	Pfcrt
+crt	371	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + R371I	Pfcrt
+crt	371	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + I356T + R371I	Pfcrt
+crt	371	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T+ A220S + Q271E + N326S + R371I	Pfcrt
+crt	371	Chloroquine	Candidate marker ( Epi. & Lab.)	Candidate	M74I + N75E + K76T + A220S + Q271E + N326S + I356T + R371I	Pfcrt
+cytb	133	Atovaquone	Potential marker (Lab.)	Potential	M133I	Pfcytb
+cytb	133	Atovaquone	Potential marker (Lab.)	Potential	M133I  + L271F	Pfcytb
+cytb	133	Atovaquone	Potential marker (Lab.)	Potential	M133I + P275T	Pfcytb
+cytb	133	Atovaquone	Potential marker (Lab.)	Potential	M133I + K272R	Pfcytb
+cytb	133	Atovaquone	Potential marker (Lab.)	Potential	M133I + G280D	Pfcytb
+cytb	268	Atovaquone	Potential marker (Clin.)	Potential	Y268C	Pfcytb
+cytb	268	Atovaquone	Validated marker (Lab. & Clin.)	Validated	Y268S	Pfcytb
+cytb	271	Atovaquone	Potential marker (Lab.)	Potential	M133I  + L271F	Pfcytb
+cytb	272	Atovaquone	Potential marker (Lab.)	Potential	M133I + K272R	Pfcytb
+cytb	275	Atovaquone	Potential marker (Lab.)	Potential	M133I + P275T	Pfcytb
+cytb	280	Atovaquone	Potential marker (Lab.)	Potential	M133I + G280D	Pfcytb
+cytb	283	Atovaquone	Potential marker (Lab.)	Potential	L283I + V284K	Pfcytb
+cytb	284	Atovaquone	Potential marker (Lab.)	Potential	L283I + V284K	Pfcytb
+dhfr	16	Cycloguanil	Potential marker (Lab.)	Potential	A16V + S108T	Pfdhfr
+dhfr	50	Cycloguanil	Potential marker (Lab.)	Potential	C50R + S108N	Pfdhfr
+dhfr	51	Cycloguanil	Potential marker (Lab.)	Potential	N51I + C59R	Pfdhfr
+dhfr	51	Cycloguanil	Potential marker (Lab.)	Potential	N51I + S108N	Pfdhfr
+dhfr	51	Cycloguanil	Potential marker (Lab.)	Potential	N51I + C59R + S108N	Pfdhfr
+dhfr	51	Cycloguanil	Potential marker (Lab.)	Potential	N51I + C59R + S108N + I164L	Pfdhfr
+dhfr	51	Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + S108N	Pfdhfr
+dhfr	51	Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N	Pfdhfr
+dhfr	51	Pyrimethamine	Potential marker (Lab.)	Potential	N51I	Pfdhfr
+dhfr	51	Pyrimethamine	Potential marker (Lab.)	Potential	N51I + C59R + S108N + I164L	Pfdhfr
+dhfr	51	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N &  A437G + A581G	Pfdhfr & Pfdhps
+dhfr	51	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I+C59R+S108N & S436A + A437G + K540E	Pfdhfr & Pfdhps
+dhfr	51	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + A581G + 613T	Pfdhfr & Pfdhps
+dhfr	51	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A + A437G + A613S	Pfdhfr & Pfdhps
+dhfr	51	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A + A437G + A581G	Pfdhfr & Pfdhps
+dhfr	51	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + K540E + A581G	Pfdhfr & Pfdhps
+dhfr	51	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A  + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhfr	51	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + K540E + A581G + S436A	Pfdhfr & Pfdhps
+dhfr	51	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhfr	51	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + S108N & A437G + K540E	Pfdhfr & Pfdhps
+dhfr	51	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N &  A437G	Pfdhfr & Pfdhps
+dhfr	51	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N & S436A + A437G	Pfdhfr & Pfdhps
+dhfr	51	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N & A437G + K540E	Pfdhfr & Pfdhps
+dhfr	59	Cycloguanil	Potential marker (Lab.)	Potential	N51I + C59R	Pfdhfr
+dhfr	59	Cycloguanil	Potential marker (Lab.)	Potential	C59R + S108N	Pfdhfr
+dhfr	59	Cycloguanil	Potential marker (Lab.)	Potential	N51I + C59R + S108N	Pfdhfr
+dhfr	59	Cycloguanil	Potential marker (Lab.)	Potential	N51I + C59R + S108N + I164L	Pfdhfr
+dhfr	59	Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	C59R + S108N	Pfdhfr
+dhfr	59	Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N	Pfdhfr
+dhfr	59	Pyrimethamine	Potential marker (Lab.)	Potential	C59R	Pfdhfr
+dhfr	59	Pyrimethamine	Potential marker (Lab.)	Potential	C59R + S108N + I164L	Pfdhfr
+dhfr	59	Pyrimethamine	Potential marker (Lab.)	Potential	N51I + C59R + S108N + I164L	Pfdhfr
+dhfr	59	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	C59R + S108N & S436A	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	C59R + S108N & A437G	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N &  A437G + A581G	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I+C59R+S108N & S436A + A437G + K540E	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + A581G + 613T	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A + A437G + A613S	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A + A437G + A581G	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + K540E + A581G	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A  + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + K540E + A581G + S436A	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	C59R + S108N & K540E	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N &  A437G	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N & S436A + A437G	Pfdhfr & Pfdhps
+dhfr	59	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N & A437G + K540E	Pfdhfr & Pfdhps
+dhfr	108	Cycloguanil	Potential marker (Lab.)	Potential	S108N/T	Pfdhfr
+dhfr	108	Cycloguanil	Potential marker (Lab.)	Potential	C50R + S108N	Pfdhfr
+dhfr	108	Cycloguanil	Potential marker (Lab.)	Potential	A16V + S108T	Pfdhfr
+dhfr	108	Cycloguanil	Potential marker (Lab.)	Potential	N51I + S108N	Pfdhfr
+dhfr	108	Cycloguanil	Potential marker (Lab.)	Potential	C59R + S108N	Pfdhfr
+dhfr	108	Cycloguanil	Potential marker (Lab.)	Potential	N51I + C59R + S108N	Pfdhfr
+dhfr	108	Cycloguanil	Potential marker (Lab.)	Potential	N51I + C59R + S108N + I164L	Pfdhfr
+dhfr	108	Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	S108N	Pfdhfr
+dhfr	108	Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + S108N	Pfdhfr
+dhfr	108	Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	C59R + S108N	Pfdhfr
+dhfr	108	Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N	Pfdhfr
+dhfr	108	Pyrimethamine	Potential marker (Lab.)	Potential	C59R + S108N + I164L	Pfdhfr
+dhfr	108	Pyrimethamine	Potential marker (Lab.)	Potential	N51I + C59R + S108N + I164L	Pfdhfr
+dhfr	108	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	C59R + S108N & S436A	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	C59R + S108N & A437G	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N &  A437G + A581G	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I+C59R+S108N & S436A + A437G + K540E	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + A581G + 613T	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A + A437G + A613S	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A + A437G + A581G	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + K540E + A581G	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A  + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + K540E + A581G + S436A	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	C59R + S108N & K540E	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + S108N & A437G + K540E	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N &  A437G	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N & S436A + A437G	Pfdhfr & Pfdhps
+dhfr	108	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N & A437G + K540E	Pfdhfr & Pfdhps
+dhfr	164	Cycloguanil	Potential marker (Lab.)	Potential	I164L	Pfdhfr
+dhfr	164	Cycloguanil	Potential marker (Lab.)	Potential	N51I + C59R + S108N + I164L	Pfdhfr
+dhfr	164	Pyrimethamine	Potential marker (Lab.)	Potential	I164L	Pfdhfr
+dhfr	164	Pyrimethamine	Potential marker (Lab.)	Potential	C59R + S108N + I164L	Pfdhfr
+dhfr	164	Pyrimethamine	Potential marker (Lab.)	Potential	N51I + C59R + S108N + I164L	Pfdhfr
+dhps	431	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhps	436	Sulfadoxine	Potential marker (Lab.)	Potential	S436F + A613S	Pfdhps
+dhps	436	Sulfadoxine	Potential marker (Lab.)	Potential	S436A + A437G	Pfdhps
+dhps	436	Sulfadoxine	Potential marker (Lab.)	Potential	S436F + A437G + A613S	Pfdhps
+dhps	436	Sulfadoxine	Potential marker (Lab.)	Potential	S436A + A437G + K540E	Pfdhps
+dhps	436	Sulfadoxine	Potential marker (Lab.)	Potential	S436A + A437G + K540E + A613T	Pfdhps
+dhps	436	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	C59R + S108N & S436A	Pfdhfr & Pfdhps
+dhps	436	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I+C59R+S108N & S436A + A437G + K540E	Pfdhfr & Pfdhps
+dhps	436	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A + A437G + A613S	Pfdhfr & Pfdhps
+dhps	436	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A + A437G + A581G	Pfdhfr & Pfdhps
+dhps	436	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A  + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhps	436	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + K540E + A581G + S436A	Pfdhfr & Pfdhps
+dhps	436	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhps	436	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N & S436A + A437G	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine	Potential marker (Epi.)	Potential	A437G + K540E	Pfdhps
+dhps	437	Sulfadoxine	Potential marker (Lab.)	Potential	A437G	Pfdhps
+dhps	437	Sulfadoxine	Potential marker (Lab.)	Potential	S436A + A437G	Pfdhps
+dhps	437	Sulfadoxine	Potential marker (Lab.)	Potential	A437G + A581G	Pfdhps
+dhps	437	Sulfadoxine	Potential marker (Lab.)	Potential	S436F + A437G + A613S	Pfdhps
+dhps	437	Sulfadoxine	Potential marker (Lab.)	Potential	S436A + A437G + K540E	Pfdhps
+dhps	437	Sulfadoxine	Potential marker (Lab.)	Potential	S436A + A437G + K540E + A613T	Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	C59R + S108N & A437G	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N &  A437G + A581G	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I+C59R+S108N & S436A + A437G + K540E	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + A581G + 613T	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A + A437G + A613S	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A + A437G + A581G	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + K540E + A581G	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A  + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + K540E + A581G + S436A	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + S108N & A437G + K540E	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N &  A437G	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N & S436A + A437G	Pfdhfr & Pfdhps
+dhps	437	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N & A437G + K540E	Pfdhfr & Pfdhps
+dhps	540	Sulfadoxine	Potential marker (Epi.)	Potential	A437G + K540E	Pfdhps
+dhps	540	Sulfadoxine	Potential marker (Lab.)	Potential	S436A + A437G + K540E	Pfdhps
+dhps	540	Sulfadoxine	Potential marker (Lab.)	Potential	S436A + A437G + K540E + A613T	Pfdhps
+dhps	540	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I+C59R+S108N & S436A + A437G + K540E	Pfdhfr & Pfdhps
+dhps	540	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + K540E + A581G	Pfdhfr & Pfdhps
+dhps	540	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + K540E + A581G + S436A	Pfdhfr & Pfdhps
+dhps	540	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	C59R + S108N & K540E	Pfdhfr & Pfdhps
+dhps	540	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + S108N & A437G + K540E	Pfdhfr & Pfdhps
+dhps	540	Sulfadoxine-Pyrimethamine	Validated marker (Epi., Lab. & Clin.)	Validated	N51I + C59R + S108N & A437G + K540E	Pfdhfr & Pfdhps
+dhps	581	Sulfadoxine	Potential marker (Lab.)	Potential	A437G + A581G	Pfdhps
+dhps	581	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N &  A437G + A581G	Pfdhfr & Pfdhps
+dhps	581	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + A581G + 613T	Pfdhfr & Pfdhps
+dhps	581	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A + A437G + A581G	Pfdhfr & Pfdhps
+dhps	581	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + K540E + A581G	Pfdhfr & Pfdhps
+dhps	581	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A  + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhps	581	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + K540E + A581G + S436A	Pfdhfr & Pfdhps
+dhps	581	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhps	613	Sulfadoxine	Potential marker (Lab.)	Potential	S436F + A613S	Pfdhps
+dhps	613	Sulfadoxine	Potential marker (Lab.)	Potential	S436F + A437G + A613S	Pfdhps
+dhps	613	Sulfadoxine	Potential marker (Lab.)	Potential	S436A + A437G + K540E + A613T	Pfdhps
+dhps	613	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & A437G + A581G + 613T	Pfdhfr & Pfdhps
+dhps	613	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A + A437G + A613S	Pfdhfr & Pfdhps
+dhps	613	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & S436A  + A437G + A581G + A613S	Pfdhfr & Pfdhps
+dhps	613	Sulfadoxine-Pyrimethamine	Candidate marker (Epi. & Lab.)	Candidate	N51I + C59R + S108N & I431V + S436A + A437G + A581G + A613S	Pfdhfr & Pfdhps
+k13	252	Artemisinins	Candidate marker (Epi. & Clin.)	Candidate	E252Q	Pfk13
+k13	413	Artemisinins	Potential marker (Lab.)	Potential	P413A	Pfk13
+k13	438	Artemisinins	Potential marker (Epi.)	Potential	K438N	Pfk13
+k13	441	Artemisinins	Candidate marker (Epi. & Clin.)	Candidate	P441L	Pfk13
+k13	446	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	F446I	Pfk13
+k13	449	Artemisinins	Potential marker (Epi.)	Potential	G449A	Pfk13
+k13	458	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	N458Y	Pfk13
+k13	469	Artemisinins	Candidate marker (Epi. & Clin.)	Candidate	C469F	Pfk13
+k13	469	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	C469Y	Pfk13
+k13	476	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	M476I	Pfk13
+k13	493	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	Y493H	Pfk13
+k13	495	Artemisinins	Potential marker (Lab.)	Potential	F495L	Pfk13
+k13	508	Artemisinins	Potential marker (Epi.)	Potential	T508N	Pfk13
+k13	511	Artemisinins	Potential marker (Epi.)	Potential	Y511H	Pfk13
+k13	515	Artemisinins	Potential marker (Lab.)	Potential	R515K	Pfk13
+k13	527	Artemisinins	Potential marker (Clin.)	Potential	P527H	Pfk13
+k13	533	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	G533S	Pfk13
+k13	537	Artemisinins	Candidate marker (Epi. & Clin.)	Candidate	N537I	Pfk13
+k13	538	Artemisinins	Candidate marker (Epi. & Clin.)	Candidate	G538V	Pfk13
+k13	539	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	R539T	Pfk13
+k13	543	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	I543T	Pfk13
+k13	553	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	P553L	Pfk13
+k13	561	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	R561H	Pfk13
+k13	568	Artemisinins	Candidate marker (Epi. & Clin.)	Candidate	V568G	Pfk13
+k13	574	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	P574L	Pfk13
+k13	577	Artemisinins	Potential marker (Epi.)	Potential	S577L	Pfk13
+k13	579	Artemisinins	Potential marker (Lab.)	Potential	M579I	Pfk13
+k13	580	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	C580Y	Pfk13
+k13	582	Artemisinins	Potential marker (Epi.)	Potential	A582V	Pfk13
+k13	584	Artemisinins	Potential marker (Lab.)	Potential	D584V	Pfk13
+k13	585	Artemisinins	Potential marker (Epi.)	Potential	N585K	Pfk13
+k13	613	Artemisinins	Potential marker (Epi.)	Potential	Q613E	Pfk13
+k13	622	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	R622I	Pfk13
+k13	625	Artemisinins	Potential marker (Clin.)	Potential	G625R	Pfk13
+k13	675	Artemisinins	Validated marker (Epi., Lab. & Clin.)	Validated	A675V	Pfk13
+mdr1	86	Amodiaquine	Candidate marker ( Epi. & Lab.)	Candidate	N86Y	Pfmdr1
+mdr1	86	Chloroquine	Validated marker (Epi., Lab. & Clin.)	Validated	N86Y	Pfmdr1
+mdr1	1034	Quinine	Potential marker (Lab.)	Potential	S1034C + N1042D + D1246Y	Pfmdr1
+mdr1	1042	Quinine	Potential marker (Lab.)	Potential	S1034C + N1042D + D1246Y	Pfmdr1
+mdr1	1246	Quinine	Potential marker (Lab.)	Potential	S1034C + N1042D + D1246Y	Pfmdr1

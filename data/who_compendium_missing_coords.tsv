@@ -1,0 +1,6 @@
+gene	aa_position	who_drugs	who_class_buckets	who_classifications	who_alterations
+coronin	50	Artemisinins	Potential	Potential marker (Lab.)	G50E
+coronin	100	Artemisinins	Potential	Potential marker (Lab.)	R100K
+coronin	107	Artemisinins	Potential	Potential marker (Lab.)	E107V
+crt	160	Chloroquine	Potential	Potential marker (Lab.)	K76T+A144T+L160Y+N326D
+crt	367	Piperaquine	Potential	Potential marker (Lab.)	G367C

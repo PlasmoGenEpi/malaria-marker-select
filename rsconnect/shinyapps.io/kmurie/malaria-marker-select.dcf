@@ -1,0 +1,10 @@
+name: malaria-marker-select
+title:
+username: kmurie
+account: kmurie
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16980767
+bundleId: 11759062
+url: https://kmurie.shinyapps.io/malaria-marker-select/
+version: 1
