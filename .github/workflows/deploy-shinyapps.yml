@@ -33,7 +33,7 @@ jobs:
 
       - name: Install R packages
         run: |
-          Rscript -e "install.packages(c('rsconnect','shiny','DT','readr','dplyr'))"
+          Rscript -e "install.packages(c('rsconnect','shiny','DT','readr','dplyr'), repos='https://packagemanager.posit.co/cran/__linux__/noble/latest')"
 
       - name: Configure rsconnect
         run: |
