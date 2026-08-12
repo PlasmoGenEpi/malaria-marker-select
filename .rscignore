@@ -1,0 +1,13 @@
+# Files used for local/CI development, not the running Shiny app
+.github
+.Rprofile
+renv.lock
+renv
+scripts
+data/who_compendium
+README.md
+LICENSE
+launch_app.R
+tmp.R
+tmp_compare
+.DS_Store
