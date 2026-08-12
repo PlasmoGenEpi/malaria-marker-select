@@ -219,7 +219,7 @@ ui <- fluidPage(
           "Markers",
           h3("Markers"),
           helpText(
-            "Select rows to download or group. Use the sidebar to filter first if needed."
+            "Select individual markers to download or group. Use the sidebar to filter first if needed."
           ),
           div(
             style = "margin-bottom: 10px; display: flex; gap: 8px; flex-wrap: wrap;",
@@ -249,7 +249,7 @@ ui <- fluidPage(
           "Marker groups",
           h3("Marker groups"),
           helpText(
-            "Groups are built from markers you selected on the Markers tab."
+            "Create marker groups from markers you selected on the Markers tab."
           ),
           uiOutput("grouping_placeholder_ui"),
           DTOutput("grouping_marker_table"),
