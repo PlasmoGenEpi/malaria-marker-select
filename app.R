@@ -219,7 +219,7 @@ ui <- fluidPage(
           "Markers",
           h3("Markers"),
           helpText(
-            "Select individual markers to download or group. Use the sidebar to filter first if needed."
+            "Select individual markers to download or group together. Use the sidebar to filter first if needed."
           ),
           div(
             style = "margin-bottom: 10px; display: flex; gap: 8px; flex-wrap: wrap;",
@@ -278,8 +278,18 @@ ui <- fluidPage(
             "and optionally assign them to named groups."
           ),
           p(
+            "This app was designed to generate inputs for the ",
+            tags$a(
+              href = "https://github.com/PlasmoGenEpi/plasmodiumdrugres",
+              target = "_blank",
+              rel = "noopener noreferrer",
+              "plasmodiumdrugres pipeline"
+            ),
+            ". Markers are used for single-locus estimates. The groups generated from the markers selected are used for multi-locus estimates."
+          ),
+          p(
             strong("Workflow:"),
-            " sidebar filters → select rows on Markers → download (optional) → Marker groups."
+            " sidebar filters → select rows on Markers → download marker genomic locations → group selected markers on Marker groups → download marker groups"
           ),
           h3("Using the app"),
           tags$ol(
@@ -303,6 +313,64 @@ ui <- fluidPage(
               " match the marker table (e.g. ", code("Pf3D7_13_v3"), ")."
             )
           ),
+          h3("Marker table columns"),
+          p(
+            "The Markers table is one row per amino‑acid site (with genomic coordinates).",
+            " Use the sidebar ", strong("Columns"), " control to show extra fields.",
+            " Core location columns come from the built‑in marker table; WHO columns are",
+            " joined from the Compendium and ", em("collapsed across all WHO rows"),
+            " that include that site."
+          ),
+          h4("Core columns"),
+          tags$ul(
+            tags$li(strong(code("gene_id")), " — short PlasmoDB-style gene identifier used in downloads (e.g. ", code("0709000"), ")."),
+            tags$li(strong(code("gene")), " — short gene name used in the app (", code("crt"), ", ", code("k13"), ", ", code("dhfr"), ", …)."),
+            tags$li(strong(code("aa_position")), " — amino‑acid position in the gene."),
+            tags$li(strong(code("chrom")), " / ", strong(code("start")), " / ", strong(code("stop")), " / ", strong(code("strand")), " — 0‑based half‑open genomic interval for that codon (BED‑like). Downloads rename ", code("stop"), " to ", code("end"), " and prefix chrom as ", code("#chrom"), ".")
+          ),
+          h4("WHO annotation columns"),
+          p(
+            "In the Excel workbook, each row is usually one drug × one alteration (mutation or haplotype).",
+            " Here the table is keyed by ", code("gene"), " + ", code("aa_position"), ", so every Excel row that",
+            " mentions that site is merged into one marker row. Multi‑value fields are joined with ",
+            code("; "), " (sorted, unique)."
+          ),
+          tags$ul(
+            tags$li(
+              strong(code("in_who_compendium")),
+              " — ", code("TRUE"), " if this site appears in at least one WHO AA alteration; otherwise ", code("FALSE"), "."
+            ),
+            tags$li(
+              strong(code("who_drugs")),
+              " — all drugs linked to this site across WHO rows (e.g. ", code("Chloroquine; Piperaquine"), ")."
+            ),
+            tags$li(
+              strong(code("who_class_buckets")),
+              " — simplified evidence classes for filtering: ", code("Validated"), ", ",
+              code("Candidate"), ", and/or ", code("Potential"), ". A site can have more than one."
+            ),
+            tags$li(
+              strong(code("who_classifications")),
+              " — fuller WHO classification text from the Excel (e.g. \"Validated marker (Epi., Lab. & Clin.)\"),",
+              " also collapsed with ", code("; "), " when several apply."
+            ),
+            tags$li(
+              strong(code("who_alterations")),
+              " — WHO ", em("Alteration(s)"), " strings that include this site. Unlike the Excel,",
+              " this is ", strong("not"), " a single haplotype for the row: it lists every distinct",
+              " alteration/haplotype string from the Compendium that contains this amino‑acid position,",
+              " separated by ", code("; "), ". Within each string, WHO usually uses ", code("+"),
+              " for co‑occurring sites in one gene and ", code("&"), " to join partners across genes",
+              " (commonly ", code("dhfr"), " & ", code("dhps"), "). Example: a ", code("dhfr"), " 51 row may show",
+              " both a single‑site change (", code("N51I"), ") and multi‑site haplotypes",
+              " (", code("N51I + C59R + S108N & A437G + K540E"), "). Use these strings as a guide when building",
+              " multi‑locus groups; they are not auto‑converted into Marker groups."
+            )
+          ),
+          p(
+            "Amplifications and other non‑AA WHO entries are not expanded to BED coordinates here;",
+            " see the missing‑coords note in the README for sites still lacking genomic positions."
+          ),
           h3("WHO field guide"),
           p(
             "From the WHO Compendium user guide (Dec 2025, v1.0). Classifications reflect",
@@ -310,7 +378,7 @@ ui <- fluidPage(
           ),
           tags$ul(
             tags$li(strong("Gene(s):"), " gene(s) carrying the alteration."),
-            tags$li(strong("Alteration(s):"), " mutation, haplotype, or amplification (", code("who_alterations"), ")."),
+            tags$li(strong("Alteration(s):"), " mutation, haplotype, or amplification (shown in the app as ", code("who_alterations"), "; see above for collapsing)."),
             tags$li(strong("Classification:"), " Validated, Candidate, or Potential based on evidence types."),
             tags$li(strong("Evidence A1–C1:"), " 1 = threshold met — lab (A1 transfection; A2 isolate/strain assays; A3 genetic-cross progeny); clinical (B1 delayed clearance; B2 recrudescence; B3 post-treatment selection); epi (C1 prevalence)."),
             tags$li(strong("References (PMIDs):"), " in the Excel workbook only.")
