@@ -108,6 +108,27 @@ markers_overlapping_bed <- function(markers_df, bed_df) {
   markers_df[keep, , drop = FALSE]
 }
 
+# STAVE-style group id without amino acids: GENE:pos_pos;GENE:pos
+stave_group_name <- function(df) {
+  if (is.null(df) || nrow(df) == 0) {
+    return("")
+  }
+  parts <- df %>%
+    mutate(
+      gene_id = as.character(.data$gene_id),
+      aa_position = as.integer(.data$aa_position)
+    ) %>%
+    distinct(.data$gene_id, .data$aa_position) %>%
+    arrange(.data$gene_id, .data$aa_position) %>%
+    group_by(.data$gene_id) %>%
+    summarise(
+      positions = paste(.data$aa_position, collapse = "_"),
+      .groups = "drop"
+    ) %>%
+    mutate(label = paste0(.data$gene_id, ":", .data$positions))
+  paste(parts$label, collapse = ";")
+}
+
 annotate_with_who <- function(df) {
   df %>%
     mutate(
@@ -257,11 +278,19 @@ ui <- fluidPage(
           tags$hr(),
           h3("Create a group"),
           helpText(
-            "Select rows above, name the group, then add. Markers can be in more than one group."
+            "Select rows above, name the group or generate a name, then add.",
+            " A generated name is the gene id and positions, separated like a STAVE id, without amino acids.",
+            " Markers can be in more than one group."
           ),
-          textInput("group_name", "Group name", value = "", placeholder = "e.g. pfdhfr_pfdhps"),
+          textInput(
+            "group_name",
+            "Group name",
+            value = "",
+            placeholder = "e.g. PF3D7_0417200:51_108"
+          ),
           div(
             style = "display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;",
+            actionButton("generate_group_name", "Autogenerate name"),
             actionButton("add_to_group", "Add to group"),
             actionButton("clear_groups", "Clear all groups")
           ),
@@ -725,6 +754,24 @@ server <- function(input, output, session) {
     g %>%
       left_join(df_keyed, by = c("gene_id", "aa_position")) %>%
       select(group_id, gene_id, aa_position, all_of(extra))
+  })
+
+  observeEvent(input$generate_group_name, {
+    sm <- selected_markers_for_grouping()
+    sel <- input$grouping_marker_table_rows_selected
+    if (nrow(sm) == 0 || is.null(sel) || length(sel) == 0) {
+      showModal(modalDialog(
+        title = "Cannot generate a name",
+        "Select at least one marker in the table above.",
+        easyClose = TRUE
+      ))
+      return()
+    }
+    updateTextInput(
+      session,
+      "group_name",
+      value = stave_group_name(sm[sel, , drop = FALSE])
+    )
   })
 
   observeEvent(input$add_to_group, {
