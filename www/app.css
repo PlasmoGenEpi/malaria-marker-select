@@ -204,6 +204,27 @@ html, body {
   box-shadow: 0 0 0 3px rgba(117, 137, 195, 0.25) !important;
 }
 
+.group-name-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.group-name-row > .form-group {
+  flex: 1 1 auto;
+  margin-bottom: 0;
+}
+
+.group-name-row > .shiny-input-container {
+  margin-bottom: 0;
+}
+
+.group-name-row .checkbox {
+  margin: 0 0 8px;
+  white-space: nowrap;
+}
+
 .selectize-control.multi .selectize-input > div {
   background: var(--pink-soft) !important;
   color: var(--maroon) !important;
