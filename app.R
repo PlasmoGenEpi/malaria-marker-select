@@ -253,7 +253,7 @@ ui <- fluidPage(
           h3("Download"),
           helpText(
             "Downloads a BED file with ", code("#chrom"), ", ", code("start"), ", ", code("end"), ", ",
-            code("gene_id"), ", ", code("strand"), ", plus any optional columns you pick."
+            code("gene_id"), ", ", code("aa_position"), ", ", code("strand"), ", plus any optional columns you pick."
           ),
           uiOutput("download_cols_ui"),
           checkboxInput("show_markers_preview", "Show preview", value = FALSE),
@@ -338,7 +338,8 @@ ui <- fluidPage(
               code("#chrom", .noWS = "after"), ", ",
               code("start", .noWS = "after"), ", ",
               code("end", .noWS = "after"), ", ",
-              code("gene_id", .noWS = "after"), ", and ",
+              code("gene_id", .noWS = "after"), ", ",
+              code("aa_position", .noWS = "after"), ", and ",
               code("strand", .noWS = "after"), ". ",
               code("gene"), " is included by default. Optionally, add extra columns including WHO Compendium annotations."
             ),
@@ -633,7 +634,7 @@ server <- function(input, output, session) {
   # Extra columns for BED-like download
   output$download_cols_ui <- renderUI({
     df <- annotated_markers()
-    base_bed_cols <- c("chrom", "start", "stop", "strand", "gene_id")
+    base_bed_cols <- c("chrom", "start", "stop", "strand", "gene_id", "aa_position")
     extra_choices <- setdiff(names(df), base_bed_cols)
     selectInput(
       "extra_download_cols",
@@ -653,6 +654,7 @@ server <- function(input, output, session) {
         start = integer(0),
         end = integer(0),
         gene_id = character(0),
+        aa_position = integer(0),
         strand = character(0)
       ))
     }
@@ -664,7 +666,7 @@ server <- function(input, output, session) {
         `#chrom` = .data$chrom,
         end = .data$stop
       ) %>%
-      select(`#chrom`, start, end, gene_id, strand, all_of(extra))
+      select(`#chrom`, start, end, gene_id, aa_position, strand, all_of(extra))
   })
 
   output$markers_download_preview <- renderDT({
