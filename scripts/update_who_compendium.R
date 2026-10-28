@@ -55,7 +55,6 @@ version_file <- file.path(who_dir, "VERSION.txt")
 principal_path <- file.path(root, "data", "principal_resistance_marker_info_table.tsv")
 long_out <- file.path(root, "data", "who_compendium_annotations_long.tsv")
 summary_out <- file.path(root, "data", "who_compendium_marker_summary.tsv")
-missing_out <- file.path(root, "data", "who_compendium_missing_coords.tsv")
 
 xlsx_arg <- get_arg("--xlsx")
 version_label <- get_arg("--version")
@@ -287,13 +286,11 @@ missing_aa <- summary_tbl %>%
 
 write_tsv(long, long_out)
 write_tsv(summary_tbl, summary_out)
-write_tsv(missing_aa, missing_out)
 
 message("")
 message("Wrote:")
 message("  ", long_out, "  (", nrow(long), " rows)")
 message("  ", summary_out, "  (", nrow(summary_tbl), " AA markers)")
-message("  ", missing_out, "  (", nrow(missing_aa), " AA markers without coords)")
 
 message("")
 message("Coverage vs principal table:")
@@ -311,7 +308,6 @@ if (nrow(missing_aa) > 0) {
       r$gene, r$aa_position, r$who_drugs, r$who_class_buckets
     ))
   }
-  message("Details: ", missing_out)
 } else {
   message("")
   message("All WHO AA markers have genomic coordinates in the principal table.")

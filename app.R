@@ -323,7 +323,7 @@ ui <- fluidPage(
           ),
           h4("Core columns"),
           tags$ul(
-            tags$li(strong(code("gene_id")), " — short PlasmoDB-style gene identifier used in downloads (e.g. ", code("0709000"), ")."),
+            tags$li(strong(code("gene_id")), " — PlasmoDB gene identifier used in downloads (e.g. ", code("PF3D7_0709000"), "). The ", code("PF3D7_"), " prefix keeps leading zeros from being dropped."),
             tags$li(strong(code("gene")), " — short gene name used in the app (", code("crt"), ", ", code("k13"), ", ", code("dhfr"), ", …)."),
             tags$li(strong(code("aa_position")), " — amino‑acid position in the gene."),
             tags$li(strong(code("chrom")), " / ", strong(code("start")), " / ", strong(code("stop")), " / ", strong(code("strand")), " — 0‑based half‑open genomic interval for that codon (BED‑like). Downloads rename ", code("stop"), " to ", code("end"), " and prefix chrom as ", code("#chrom"), ".")
@@ -368,8 +368,7 @@ ui <- fluidPage(
             )
           ),
           p(
-            "Amplifications and other non‑AA WHO entries are not expanded to BED coordinates here;",
-            " see the missing‑coords note in the README for sites still lacking genomic positions."
+            "Amplifications and other non‑AA WHO entries are not expanded to BED coordinates here."
           ),
           h3("WHO field guide"),
           p(
