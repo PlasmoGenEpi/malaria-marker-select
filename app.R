@@ -583,7 +583,7 @@ server <- function(input, output, session) {
       "Optional extra columns to include",
       choices = extra_choices,
       multiple = TRUE,
-      selected = intersect(who_display_cols, extra_choices)
+      selected = intersect("gene", extra_choices)
     )
   })
 
