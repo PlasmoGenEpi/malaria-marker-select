@@ -4,7 +4,7 @@ An R Shiny app to help non-bioinformaticians:
 
 - browse a marker table
 - filter by WHO compendium membership, drug, and classification
-- select markers and download a BED-like TSV
+- select markers and download a BED file
 - create marker groups and download a groups TSV
 
 **Live app:** [https://kmurie.shinyapps.io/malaria-marker-select/](https://kmurie.shinyapps.io/malaria-marker-select/)
