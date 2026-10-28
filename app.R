@@ -290,7 +290,7 @@ ui <- fluidPage(
           ),
           div(
             style = "display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;",
-            actionButton("generate_group_name", "Generate name"),
+            actionButton("generate_group_name", "Autogenerate name"),
             actionButton("add_to_group", "Add to group"),
             actionButton("clear_groups", "Clear all groups")
           ),
