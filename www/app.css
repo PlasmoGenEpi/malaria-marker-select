@@ -159,6 +159,14 @@ html, body {
   border-bottom-color: var(--blue);
 }
 
+.sidebar-details-filters > summary {
+  padding-bottom: 0;
+}
+
+.sidebar-details-filters > h4:first-of-type {
+  margin-top: 20px;
+}
+
 .sidebar-details > .help-block:first-of-type {
   margin-top: 8px;
   margin-bottom: 12px;
@@ -309,6 +317,21 @@ html, body {
 
 .main-panel-card p {
   max-width: 68ch;
+}
+
+.instruction-steps {
+  margin: 4px 0 20px;
+  padding-left: 1.35rem;
+  max-width: 68ch;
+}
+
+.instruction-steps li {
+  margin-bottom: 14px;
+}
+
+.instruction-steps li strong:first-child {
+  display: block;
+  margin-bottom: 2px;
 }
 
 /* Tables — fill the main panel without overflowing */

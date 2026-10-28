@@ -138,7 +138,7 @@ ui <- fluidPage(
     tags$img(src = "logo.png", alt = "PlasmoGenEpi logo"),
     div(
       class = "app-header-text",
-      h1("Malaria Resistance Marker Selector"),
+      h1("Malaria Marker Selector"),
       p(class = "app-tagline", "Filter, select, and download markers genomic locations")
     )
   ),
@@ -151,11 +151,9 @@ ui <- fluidPage(
         class = "sidebar-details sidebar-details-filters",
         open = NA,
         tags$summary("Filters"),
-        helpText("Narrow which markers appear in the table."),
-        h4("WHO"),
+        h4("WHO Compendium"),
         helpText(
-          "Limit markers using WHO compendium annotations.",
-          "Details are on the Instructions tab."
+          "Limit markers using WHO compendium annotations."
         ),
         checkboxInput(
           "who_only",
@@ -180,14 +178,17 @@ ui <- fluidPage(
         tags$hr(),
         h4("Panel BED"),
         helpText(
-          "Upload a BED (chrom, start, end) to keep markers that overlap your panel."
+          "Upload a BED file (chrom, start, end) to only keep markers that are covered by your panel."
         ),
         fileInput(
           "panel_bed_file",
           "Upload panel BED",
           accept = c(".bed", ".tsv", ".bed.tsv", "text/tab-separated-values", "text/plain")
         ),
-        actionButton("clear_panel_bed", "Clear panel BED"),
+        conditionalPanel(
+          condition = "output.panel_bed_loaded",
+          actionButton("clear_panel_bed", "Clear panel BED")
+        ),
         uiOutput("panel_bed_status")
       ),
       uiOutput("who_filter_status"),
@@ -199,8 +200,8 @@ ui <- fluidPage(
       ),
       tags$details(
         class = "sidebar-details sidebar-details-custom",
-        tags$summary("Custom data"),
-        helpText("Optional — replace the built-in marker table with your own TSV."),
+        tags$summary("Custom Markers"),
+        helpText("Replace the built-in marker table with your own TSV."),
         fileInput(
           "marker_file",
           "Upload marker TSV",
@@ -219,7 +220,7 @@ ui <- fluidPage(
           "Markers",
           h3("Markers"),
           helpText(
-            "Select individual markers to download or group together. Use the sidebar to filter first if needed."
+            "Select individual markers to download their genomic coordinates. Use the sidebar to filter first if needed."
           ),
           div(
             style = "margin-bottom: 10px; display: flex; gap: 8px; flex-wrap: wrap;",
@@ -242,7 +243,7 @@ ui <- fluidPage(
           ),
           downloadButton("download_markers", "Download selected markers"),
           helpText(
-            "Next: open ", strong("Marker groups"), " to organize this selection."
+            "Next: open ", strong("Marker groups"), " to assign markers to named groups if required."
           )
         ),
         tabPanel(
@@ -271,48 +272,75 @@ ui <- fluidPage(
         ),
         tabPanel(
           "Instructions",
-          h3("Overview"),
+          h3("How to use this app"),
           p(
-            "Browse Plasmodium falciparum drug‑resistance markers, filter by the WHO",
-            "Compendium or your panel BED, select markers, download a BED‑like TSV,",
-            "and optionally assign them to named groups."
+            "Filter and select drug-resistance markers, download their genomic coordinates,",
+            " and group any you want to use together. A marker is one locus.",
+            " A group is several loci used together."
           ),
           p(
-            "This app was designed to generate inputs for the ",
+            "This app was designed to create inputs for the ",
             tags$a(
-              href = "https://github.com/PlasmoGenEpi/plasmodiumdrugres",
+              href = "https://nf-co.re/plasmodiumdrugres",
               target = "_blank",
               rel = "noopener noreferrer",
+              .noWS = "after",
               "plasmodiumdrugres pipeline"
             ),
-            ". Markers are used for single-locus estimates. The groups generated from the markers selected are used for multi-locus estimates."
+            "."
           ),
-          p(
-            strong("Workflow:"),
-            " sidebar filters → select rows on Markers → download marker genomic locations → group selected markers on Marker groups → download marker groups"
-          ),
-          h3("Using the app"),
           tags$ol(
-            tags$li("Use the sidebar to filter by WHO drug/classification and/or panel BED overlap."),
-            tags$li("On ", strong("Markers"), ", search or sort the table, then select rows (or Select all)."),
-            tags$li("Download selected markers as a BED‑like TSV (", code("#chrom"), ", ", code("start"), ", ", code("end"), ", ", code("gene_id"), ", ", code("strand"), ", plus optional columns)."),
-            tags$li("On ", strong("Marker groups"), ", assign selected markers to group names and download a groups TSV (", code("group_id"), ", ", code("gene_id"), ", ", code("aa_position"), ").")
-          ),
-          h3("Filters"),
-          tags$ul(
+            class = "instruction-steps",
             tags$li(
-              strong("WHO:"),
-              " keep markers in the compendium, and/or those linked to selected drugs or",
-              " classifications (Validated / Candidate / Potential). A site can appear under",
-              " multiple drugs or classes; filters keep it if ", em("any"), " matching WHO entry exists."
+              strong("Filter, if you want a shorter list."),
+              " Use the sidebar to keep markers in the WHO Compendium, their drug association, or classification",
+              " (Validated, Candidate, or Potential). Upload a BED file to only keep markers that are covered by your panel/ regions of interest.",
             ),
             tags$li(
-              strong("Panel BED:"),
-              " upload ", code("chrom"), "/", code("start"), "/", code("end"),
-              " (header optional). Keeps markers overlapping any interval. Chromosome names must",
-              " match the marker table (e.g. ", code("Pf3D7_13_v3"), ")."
+              strong("Select markers."),
+              " On ", strong("Markers", .noWS = "after"), ", search or sort, then select the rows you want."
+            ),
+            tags$li(
+              strong("Download coordinates."),
+              " The file has ",
+              code("#chrom", .noWS = "after"), ", ",
+              code("start", .noWS = "after"), ", ",
+              code("end", .noWS = "after"), ", ",
+              code("gene_id", .noWS = "after"), ", and ",
+              code("strand", .noWS = "after"), ". ",
+              code("gene"), " is included by default. Optionally, add extra columns including WHO Compendium annotations."
+            ),
+            tags$li(
+              strong("Make groups for multi-locus sets."),
+              " On ", strong("Marker groups", .noWS = "after"),
+              ", start from the markers you selected on ", strong("Markers", .noWS = "after"),
+              ". Select a subset, name the group, and add it, then repeat for another subset.",
+              " For example, you could put ", code("crt", .noWS = "after"),
+              " mutations you selected on ", strong("Markers", .noWS = "after"), " in one group and ", code("dhfr"), " with ", code("dhps"),
+              " in another. The download has ",
+              code("group_id", .noWS = "after"), ", ",
+              code("gene_id", .noWS = "after"), ", and ",
+              code("aa_position", .noWS = "after"), "."
             )
           ),
+          h3("Custom markers"),
+          p(
+            "To use your own table, upload a TSV with ",
+            code("gene_id", .noWS = "after"), ", ",
+            code("gene", .noWS = "after"), ", ",
+            code("aa_position", .noWS = "after"), ", ",
+            code("chrom", .noWS = "after"), ", ",
+            code("start", .noWS = "after"), ", ",
+            code("stop", .noWS = "after"), ", and ",
+            code("strand", .noWS = "after"),
+            ". WHO notes are added when the gene and amino-acid position match."
+          ),
+          p(
+            "Column definitions are on the ", strong("Column guide"), " tab."
+          )
+        ),
+        tabPanel(
+          "Column guide",
           h3("Marker table columns"),
           p(
             "The Markers table is one row per amino‑acid site (with genomic coordinates).",
@@ -323,17 +351,17 @@ ui <- fluidPage(
           ),
           h4("Core columns"),
           tags$ul(
-            tags$li(strong(code("gene_id")), " — PlasmoDB gene identifier used in downloads (e.g. ", code("PF3D7_0709000"), "). The ", code("PF3D7_"), " prefix keeps leading zeros from being dropped."),
-            tags$li(strong(code("gene")), " — short gene name used in the app (", code("crt"), ", ", code("k13"), ", ", code("dhfr"), ", …)."),
+            tags$li(strong(code("gene_id")), " — PlasmoDB gene identifier used in downloads (e.g. ", code("PF3D7_0709000"), ") "),
+            tags$li(strong(code("gene")), " — short gene name (", code("crt"), ", ", code("k13"), ", ", code("dhfr"), ", …)."),
             tags$li(strong(code("aa_position")), " — amino‑acid position in the gene."),
             tags$li(strong(code("chrom")), " / ", strong(code("start")), " / ", strong(code("stop")), " / ", strong(code("strand")), " — 0‑based half‑open genomic interval for that codon (BED‑like). Downloads rename ", code("stop"), " to ", code("end"), " and prefix chrom as ", code("#chrom"), ".")
           ),
-          h4("WHO annotation columns"),
+          h4("WHO Compendium Annotation Columns"),
           p(
-            "In the Excel workbook, each row is usually one drug × one alteration (mutation or haplotype).",
+            "In the WHO Compendium Excel workbook, each row is usually one drug × one alteration (mutation or haplotype).",
             " Here the table is keyed by ", code("gene"), " + ", code("aa_position"), ", so every Excel row that",
             " mentions that site is merged into one marker row. Multi‑value fields are joined with ",
-            code("; "), " (sorted, unique)."
+            code("; "), " (sorted, unique). See the ", strong("WHO Compendium field guide"), " for more details."
           ),
           tags$ul(
             tags$li(
@@ -394,13 +422,6 @@ ui <- fluidPage(
             code("Pfpm2/3"), " plasmepsin 2/3; ",
             code("Pfcoronin"), " coronin.",
             " The app table uses short names (", code("crt"), ", ", code("k13"), ", …)."
-          ),
-          h3("Custom data"),
-          p(
-            "Optional: upload a marker TSV with ",
-            code("gene_id"), ", ", code("gene"), ", ", code("aa_position"), ", ",
-            code("chrom"), ", ", code("start"), ", ", code("stop"), ", ", code("strand"),
-            ". WHO columns join automatically when gene + aa_position match."
           )
         )
       )
@@ -443,6 +464,10 @@ server <- function(input, output, session) {
   })
 
   panel_bed <- reactiveVal(NULL)
+  output$panel_bed_loaded <- reactive({
+    !is.null(panel_bed())
+  })
+  outputOptions(output, "panel_bed_loaded", suspendWhenHidden = FALSE)
 
   observeEvent(input$panel_bed_file, {
     req(input$panel_bed_file)
@@ -648,7 +673,7 @@ server <- function(input, output, session) {
         class = "alert alert-info",
         role = "alert",
         strong("No markers selected."),
-        " Go to the ", strong("Markers"), " tab, select markers (e.g. for download), then return here to organize them into groups."
+        " Go to the ", strong("Markers"), " tab, select markers, then return here to organize them into groups."
       )
     }
   })
