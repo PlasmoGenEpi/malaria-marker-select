@@ -231,7 +231,7 @@ ui <- fluidPage(
           tags$hr(),
           h3("Download"),
           helpText(
-            "Exports ", code("#chrom"), ", ", code("start"), ", ", code("end"), ", ",
+            "Downloads a BED file with ", code("#chrom"), ", ", code("start"), ", ", code("end"), ", ",
             code("gene_id"), ", ", code("strand"), ", plus any optional columns you pick."
           ),
           uiOutput("download_cols_ui"),
@@ -302,7 +302,7 @@ ui <- fluidPage(
             ),
             tags$li(
               strong("Download coordinates."),
-              " The file has ",
+              " The BED file has ",
               code("#chrom", .noWS = "after"), ", ",
               code("start", .noWS = "after"), ", ",
               code("end", .noWS = "after"), ", ",
@@ -649,11 +649,12 @@ server <- function(input, output, session) {
   })
   output$download_markers <- downloadHandler(
     filename = function() {
-      "selected_markers.bed.tsv"
+      "selected_markers.bed"
     },
     content = function(file) {
       write_tsv(markers_download_table(), file)
-    }
+    },
+    contentType = "text/plain"
   )
 
   # Markers selected in the Markers tab — used as the pool for grouping
