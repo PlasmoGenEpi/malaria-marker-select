@@ -278,19 +278,22 @@ ui <- fluidPage(
           tags$hr(),
           h3("Create a group"),
           helpText(
-            "Select rows above, name the group or generate a name, then add.",
+            "Select rows above, name the group or check Autogenerate name, then add.",
             " A generated name is the gene id and positions, separated like a STAVE id, without amino acids.",
             " Markers can be in more than one group."
           ),
-          textInput(
-            "group_name",
-            "Group name",
-            value = "",
-            placeholder = "e.g. PF3D7_0417200:51_108"
+          div(
+            class = "group-name-row",
+            textInput(
+              "group_name",
+              "Group name",
+              value = "",
+              placeholder = "e.g. PF3D7_0417200:51_108"
+            ),
+            checkboxInput("autogenerate_group_name", "Autogenerate name", value = FALSE)
           ),
           div(
             style = "display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;",
-            actionButton("generate_group_name", "Autogenerate name"),
             actionButton("add_to_group", "Add to group"),
             actionButton("clear_groups", "Clear all groups")
           ),
@@ -756,15 +759,29 @@ server <- function(input, output, session) {
       select(group_id, gene_id, aa_position, all_of(extra))
   })
 
-  observeEvent(input$generate_group_name, {
+  observeEvent(input$autogenerate_group_name, {
+    if (!isTRUE(input$autogenerate_group_name)) {
+      return()
+    }
     sm <- selected_markers_for_grouping()
     sel <- input$grouping_marker_table_rows_selected
     if (nrow(sm) == 0 || is.null(sel) || length(sel) == 0) {
+      updateCheckboxInput(session, "autogenerate_group_name", value = FALSE)
       showModal(modalDialog(
         title = "Cannot generate a name",
         "Select at least one marker in the table above.",
         easyClose = TRUE
       ))
+    }
+  }, ignoreInit = TRUE)
+
+  observe({
+    if (!isTRUE(input$autogenerate_group_name)) {
+      return()
+    }
+    sm <- selected_markers_for_grouping()
+    sel <- input$grouping_marker_table_rows_selected
+    if (is.null(sel) || length(sel) == 0 || nrow(sm) == 0) {
       return()
     }
     updateTextInput(
